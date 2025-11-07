@@ -1,15 +1,14 @@
 :root {
-  --primary-color: #667eea;
-  --secondary-color: #764ba2;
-  --text-color: #333;
-  --bg-color: #f4f4f4;
+  --primary-color: #2c3e50;
+  --accent-color: #e67e22;
+  --light-bg: #ecf0f1;
+  --text-color: #2d3436;
   --card-bg: #ffffff;
-  --accent-bg: #f9f9f9;
-  --nav-bg: #333;
-  --font-family: 'Segoe UI', 'Verdana', Tahoma, Geneva, sans-serif;
-  --max-width: 900px;
-  --border-radius: 10px;
+  --hover-scale: 1.03;
   --transition-speed: 0.3s;
+  --radius: 8px;
+  --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --font-family: 'Segoe UI', 'Verdana', sans-serif;
 }
 
 * {
@@ -22,11 +21,11 @@ body {
   font-family: var(--font-family);
   line-height: 1.6;
   color: var(--text-color);
-  background-color: var(--bg-color);
+  background-color: var(--light-bg);
 }
 
 header {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  background: linear-gradient(135deg, var(--primary-color), #34495e);
   color: white;
   text-align: center;
   padding: 3rem 1rem;
@@ -35,10 +34,15 @@ header {
 header h1 {
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
+  transition: transform var(--transition-speed);
+}
+
+header h1:hover {
+  transform: scale(var(--hover-scale));
 }
 
 nav {
-  background-color: var(--nav-bg);
+  background-color: var(--primary-color);
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -50,21 +54,22 @@ nav a {
   text-decoration: none;
   padding: 0.5rem 1.5rem;
   margin: 0.5rem;
-  border-radius: 5px;
-  transition: background-color var(--transition-speed);
+  border-radius: var(--radius);
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
 }
 
 nav a:hover {
-  background-color: var(--primary-color);
+  background-color: var(--accent-color);
+  transform: scale(var(--hover-scale));
 }
 
 section {
-  max-width: var(--max-width);
+  max-width: 900px;
   margin: 2rem auto;
   padding: 2rem;
   background-color: var(--card-bg);
-  border-radius: var(--border-radius);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
 h2 {
@@ -75,11 +80,17 @@ h2 {
 }
 
 .proyecto {
-  background-color: var(--accent-bg);
+  background-color: #fdfdfd;
   padding: 1.5rem;
   margin: 1rem 0;
-  border-left: 4px solid var(--primary-color);
-  border-radius: 5px;
+  border-left: 4px solid var(--accent-color);
+  border-radius: var(--radius);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.proyecto:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
 }
 
 .proyecto h3 {
@@ -100,23 +111,24 @@ h2 {
   color: white;
   padding: 1rem;
   text-align: center;
-  border-radius: 5px;
-  transition: transform var(--transition-speed);
+  border-radius: var(--radius);
+  transition: transform var(--transition-speed), background-color var(--transition-speed);
 }
 
 #habilidades li:hover {
-  transform: translateY(-5px);
+  transform: scale(var(--hover-scale));
+  background-color: var(--accent-color);
 }
 
 footer {
-  background-color: var(--nav-bg);
+  background-color: var(--primary-color);
   color: white;
   text-align: center;
   padding: 1.5rem;
   margin-top: 2rem;
 }
 
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 768px) {
   header h1 {
     font-size: 2rem;
@@ -138,16 +150,3 @@ footer {
   }
 }
 
-@media (max-width: 480px) {
-  header {
-    padding: 2rem 1rem;
-  }
-
-  header h1 {
-    font-size: 1.75rem;
-  }
-
-  section {
-    padding: 1rem;
-  }
-}
